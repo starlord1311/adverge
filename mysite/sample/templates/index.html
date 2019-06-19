@@ -2,16 +2,20 @@
 <html lang="en">
 
 <head>
+       {% load staticfiles %}
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Adverge</title>
-    <link rel="stylesheet" href="/sample/templates/css/style.css">
+    <link rel="stylesheet" href="{% static 'profiles/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'profiles/css/sidebar.css' %}">
+    <!-- <link rel="stylesheet" href="/sample/templates/css/style.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/sidebar.css">
+    <!-- <link rel="stylesheet" href="css/sidebar.css"> -->
 </head>
 
 <body>
@@ -111,27 +115,34 @@
                     </div>
                 </div>
                 <div class="col-md-5 video_advertising_add_payment c-70 mt-2">
+                    <form method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <!-- {{form}} -->
                     <h3 class="f-24 pt-2">Start a New Ad Here:</h3>
-                    <label for="ad" class="f-14">AD Description</label>
+                    <label for="ad" class="f-14">AD Description:{{ sample.video_description }}</label>
+                    {{ form.video_description}}
                     <input type="text" class="form-control p-0 pl-2" name="ad" id="">
 
-                    <label for="Validity" class="pt-2 f-14">Validity of Ad</label>
+                    <label for="Validity" class="pt-2 f-14">Validity of Ad:{{ sample.video_duration }}</label>
+                    {{ form.video_duration}}
                     <select name="Validity" class="form-control col-md-4" id="">
                         <option value="">3 Months</option>
                         <option value="">6 Months</option>
                         <option value="">9 Months</option>
                     </select>
 
-                    <label for="Countries" class="f-14 pt-2">Countries for Broadcast</label>
+                    <label for="Countries" class="f-14 pt-2">Countries for Broadcast:{{ sample.video_location }}</label>
+                    {{ form.video_location}}
                     <div class="container-fluid p-0">
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="text" class="form-control searchBar_height" name="Countries" id=""
                                     placeholder="Search Here">
                             </div>
-                            <div class="col-md-6 f-14 d-flex justify-content-end align-items-center pr-5">
+                             <div class="col-md-6 f-14 d-flex justify-content-end align-items-center pr-5">
                                 <input type="checkbox" name="" id="">Go Global
                             </div>
+                            <button type="submit" class="btn btn-default"&gt;Submit</button>
                         </div>
                         <div class="row">
                             <div class="col-md-12 pt-1">
@@ -156,6 +167,7 @@
                     </div>
 
                     <label for="Countries" class="f-14 pt-2">Add Tags to the Video</label>
+                    {{ form.video_tags}}
                     <input type="text" class="form-control col-md-6 searchBar_height" name="Countries" id=""
                         placeholder="Search Here">
                     <div class="container-fluid p-0">
@@ -184,7 +196,7 @@
                     <div class="container-fluid p-0">
                         <div class="row pt-3">
                             <div class="col-md-6">
-                                <button class="btn_video">Upload Video <input type="file" name="" title="Upload Video"
+                                 <button class="btn_video">Upload Video <input type="file" name="" title="Upload Video"
                                         id=""></button>
                             </div>
                             <div class="col-md-6 f-14 c-70">
@@ -210,8 +222,8 @@
                                 <a href="" class="make_payment_button">Make Payment</a>
                             </div>
                         </div>
-                    </div>
-
+                    </div> -->
+ -->                </form>
                 </div>
             </div>
     </section>
