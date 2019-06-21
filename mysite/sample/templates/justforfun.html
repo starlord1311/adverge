@@ -1,0 +1,128 @@
+<h3 class="f-24 pt-2">Start a New Ad Here:</h3>
+                    <label for="ad" class="f-14">AD Description</label>
+                    {{ form.video_description}}
+                    <input type="text" class="form-control p-0 pl-2" name="ad" id="">
+                    <label for="Validity" class="pt-2 f-14">Validity of Ad</label>
+                    {{ form.video_duration}}
+                    <select name="Validity" class="form-control col-md-4" id="">
+                        <option value="">3 Months</option>
+                        <option value="">6 Months</option>
+                        <option value="">9 Months</option>
+                    </select>
+
+                    <label for="Countries" class="f-14 pt-2">Countries for Broadcast:{{ sample.video_location }}</label>
+                    {{ form.video_location}}
+                    <div class="container-fluid p-0">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control searchBar_height" name="Countries" id=""
+                                    placeholder="Search Here">
+                            </div>
+                             <div class="col-md-6 f-14 d-flex justify-content-end align-items-center pr-5">
+                                <input type="checkbox" name="" id="">Go Global
+                            </div>
+                            <!-- <button type="submit" class="btn btn-default"&gt;Submit</button> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 pt-1">
+                                <div class="textArea_box">
+                                    <div class="chip">
+                                        <a href="">
+                                            John Doe
+                                            <span class="closebtn"
+                                                onclick="this.parentElement.style.display='none'">&times;
+                                            </span>
+                                        </a>
+                                        <a href="">
+                                            John Doe
+                                            <span class="closebtn"
+                                                onclick="this.parentElement.style.display='none'">&times;
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <label for="Countries" class="f-14 pt-2">Add Tags to the Video</label>
+                    {{ form.video_tags}}
+                    <input type="text" class="form-control col-md-6 searchBar_height" name="Countries" id=""
+                        placeholder="Search Here">
+                    <div class="container-fluid p-0">
+                        <div class="row">
+                            <div class="col-md-12 pt-1">
+                                <div class="textArea_box">
+                                    <div class="chip">
+                                        <a href="">
+                                            John Doe
+                                            <span class="closebtn"
+                                                onclick="this.parentElement.style.display='none'">&times;
+                                            </span>
+                                        </a>
+                                        <a href="">
+                                            John Doe
+                                            <span class="closebtn"
+                                                onclick="this.parentElement.style.display='none'">&times;
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid p-0">
+                        <div class="row pt-3">
+                            <div class="col-md-6">
+                                 <!-- <button type='submit' class="btn_video">Upload Video:{{form.video_file}}   <input type="file" value="Upload File" name="" 
+                                        id=""></button>
+                                 <button type='submit' class="btn_video">Upload Video</button>  -->
+                                        <label for="videos" class="f-14 pt-2">Upload Videos</label>
+                                        {{form.video_file}}
+                                        <!-- <input type="file" value="Upload File" name="" 
+                                        id=""> -->
+                                        <input type="submit" value="Upload" 
+                                        id="">
+                             </div>
+<!--                              <video width="320" height="240" controls>
+                                <source src="{{form.video_file.url}}" type="">
+                            </video> -->
+                              <table id="gallery" class="table table-bordered">
+                                <thead> 
+                                    <tr>
+                                    <th>Photo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for photo in photos %}
+                                    <tr>
+                                <td><a href="{{ photo.file.url }}">{{ photo.video_file.name }}</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>    
+                              </table>
+                            <div class="col-md-6 f-14 c-70">
+                                <p class="m-0">File_1_Cut.mpeg</p>
+                                <p class="m-0">02:17 Mins</p>
+                            </div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-md-12 f-14">
+                                <input type="checkbox" name="" id=""> I Agree to the terms and conditions of this
+                                platform
+                            </div>
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-md-12">
+                                <h3 class="f-18 pl-5">Cost calucuated for the Broadcast</h3>
+                            </div>
+                        </div>
+                        <div class="row pb-4">
+                            <div class="col-md-12 pl-5 make_payment_button_container">
+                                <input type="text" class="form-control input_amount" name="" id=""
+                                    placeholder="20.00 $">
+                                <a href="" class="make_payment_button">Make Payment</a>
+                            </div>
+                        </div>
+                    </div>

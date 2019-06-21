@@ -8,14 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Adverge</title>
-    <link rel="stylesheet" href="{% static 'profiles/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'profiles/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
     <!-- <link rel="stylesheet" href="/sample/templates/css/style.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="css/sidebar.css"> -->
+    <!-- <script type="text/javascript" src="{static 'js/main.js'}"></script> -->
+    <!-- <script type="text/javascript" src="{% static 'js/jquery-3.1.1.min.js' %}"></script> -->
+
 </head>
 
 <body>
@@ -115,34 +118,32 @@
                     </div>
                 </div>
                 <div class="col-md-5 video_advertising_add_payment c-70 mt-2">
-                    <form method="post" style="display: inline;">
+                    <form method="post" style="display: inline;" enctype="multipart/form-data" class="my-ajax-form">
                             {% csrf_token %}
-                            <!-- {{form}} -->
-                    <h3 class="f-24 pt-2">Start a New Ad Here:</h3>
-                    <label for="ad" class="f-14">AD Description:{{ sample.video_description }}</label>
-                    {{ form.video_description}}
-                    <input type="text" class="form-control p-0 pl-2" name="ad" id="">
-
-                    <label for="Validity" class="pt-2 f-14">Validity of Ad:{{ sample.video_duration }}</label>
-                    {{ form.video_duration}}
-                    <select name="Validity" class="form-control col-md-4" id="">
+                            <!-- {{form.as_p}} -->
+                             <!-- <button type="submit">Upload</button> -->
+                             <h3 class="f-24 pt-2">Start a New Ad Here:</h3>
+                    <input method="POST" type="text" class="form-control p-0 pl-2" name="video_description" id="video_description">
+                    <label for="video_description" class="f-14">AD Description</label>
+                    <input method="POST" type="text" class="form-control p-0 pl-2" name="video_duration" id="video_duration">
+                    <label for="video_duration" class="pt-2 f-14">Validity of Ad</label>
+                    <!-- {{ form.video_duration}} -->
+<!--                     <select name="Validity" class="form-control col-md-4" id="">
                         <option value="">3 Months</option>
                         <option value="">6 Months</option>
                         <option value="">9 Months</option>
-                    </select>
-
-                    <label for="Countries" class="f-14 pt-2">Countries for Broadcast:{{ sample.video_location }}</label>
-                    {{ form.video_location}}
+                    </select> -->
+                    <input type="text" method="POST" class="form-control searchBar_height" name="video_location" id="video_location" placeholder="Search Here">
+                    <label for="video_location" class="f-14 pt-2">Countries for Broadcast</label>
+                    <!-- {{ form.video_location}} -->
                     <div class="container-fluid p-0">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control searchBar_height" name="Countries" id=""
-                                    placeholder="Search Here">
                             </div>
                              <div class="col-md-6 f-14 d-flex justify-content-end align-items-center pr-5">
                                 <input type="checkbox" name="" id="">Go Global
                             </div>
-                            <button type="submit" class="btn btn-default"&gt;Submit</button>
+                            <!-- <button type="submit" class="btn btn-default"&gt;Submit</button> -->
                         </div>
                         <div class="row">
                             <div class="col-md-12 pt-1">
@@ -165,11 +166,10 @@
                             </div>
                         </div>
                     </div>
-
-                    <label for="Countries" class="f-14 pt-2">Add Tags to the Video</label>
-                    {{ form.video_tags}}
-                    <input type="text" class="form-control col-md-6 searchBar_height" name="Countries" id=""
+                    <input method="POST" type="text" class="form-control col-md-6 searchBar_height" name="video_tags" id="video_tags"
                         placeholder="Search Here">
+                    <label for="Countries" class="f-14 pt-2">Add Tags to the Video</label>
+                    <!-- {{ form.video_tags}} -->
                     <div class="container-fluid p-0">
                         <div class="row">
                             <div class="col-md-12 pt-1">
@@ -196,9 +196,36 @@
                     <div class="container-fluid p-0">
                         <div class="row pt-3">
                             <div class="col-md-6">
-                                 <button class="btn_video">Upload Video <input type="file" name="" title="Upload Video"
+                                 <!-- <button type='submit' class="btn_video">Upload Video:{{form.video_file}}   <input type="file" value="Upload File" name="" 
                                         id=""></button>
-                            </div>
+                                 <button type='submit' class="btn_video">Upload Video</button>  -->
+                                        <input type="file" value="Upload Files" name="video_file" 
+                                        id="video_file">
+                                        <label for="video_file" class="f-14 pt-2">Upload Videos</label>
+                                        <input type="submit" value="Upload" >
+                                        <!-- {{form.video_file}} -->
+                                        <!-- <input type="file" value="Upload File" name="" 
+                                        id=""> -->
+                             </div>
+                             {% for post in posts %}
+                             <video width="320" height="240" controls>
+                                 {{ post.video_file }}
+                             </video>
+                             {% endfor %}
+                              <table id="gallery" class="table table-bordered">
+                                <thead> 
+                                    <tr>
+                                    <th>Photo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for photo in photos %}
+                                    <tr>
+                                <td><a href="{{ photo.file.url }}">{{ photo.video_file.name }}</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>    
+                              </table>
                             <div class="col-md-6 f-14 c-70">
                                 <p class="m-0">File_1_Cut.mpeg</p>
                                 <p class="m-0">02:17 Mins</p>
@@ -222,8 +249,8 @@
                                 <a href="" class="make_payment_button">Make Payment</a>
                             </div>
                         </div>
-                    </div> -->
- -->                </form>
+                    </div>
+                </form>
                 </div>
             </div>
     </section>
@@ -265,7 +292,6 @@
     </section>
 
     <section id="modal">
-        <!-- Modal -->
         <div class="modal fade" id="support" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered max-w" role="document">
@@ -300,5 +326,25 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </body>
+    <script type="text/javascript">
+        $(document).on('submit','#my-ajax-form',function(e){
+            e.preventDefault();
 
+            $.ajax({
+                type:POST,
+                url:'/user/create/'
+                data:{
+                    video_description:$('#video_description').val(),
+                    video_duration:$('#video_duration').val(),
+                    video_location:$('#video_location').val(),
+                    video_tags:$('#video_tags').val(),
+                    video_file:$('#video_file').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(){
+                    alert("Created new user")
+                }
+            })
+        });
+    </script>
 </html>
